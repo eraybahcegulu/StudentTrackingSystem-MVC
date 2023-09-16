@@ -1,7 +1,10 @@
 ﻿
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using StudentTrackingSystem.Models;
 using System.Data;
+using System.Drawing;
 
 namespace StudentTrackingSystem.Controllers
 {
@@ -19,23 +22,50 @@ namespace StudentTrackingSystem.Controllers
             return View(objStudentList);
         }
 
-        public IActionResult Add()
-        {
-            return View();
-        }
+		public IActionResult AddUpdate(int? id)
+		{
 
-        [HttpPost]
-        public IActionResult Add(Student student)
-        {
-            if (ModelState.IsValid)
-            {
-                _studentRepository.Add(student);
-                _studentRepository.Save();
-                TempData["success"] = "Student added successfully!";
-                return RedirectToAction("Index", "Student");
-            }
-            return View();
-        }
+
+
+			if (id == null || id == 0)
+			{
+				return View();
+			}
+			else
+			{
+				Student? studentDb = _studentRepository.Get(u => u.Id == id);
+				if (studentDb == null)
+				{
+					return NotFound();
+				}
+				return View(studentDb);
+			}
+
+
+		}
+
+		[HttpPost]
+		public IActionResult AddUpdate(Student student)
+		{
+			if (ModelState.IsValid)
+			{
+
+				if (student.Id == 0)
+				{
+					_studentRepository.Add(student);
+					TempData["success"] = "Student added successfully!";
+				}
+				else
+				{
+					_studentRepository.Update(student);
+					TempData["success"] = "Student information updated!";
+				}
+
+				_studentRepository.Save();
+				return RedirectToAction("Index", "Student");
+			}
+			return View();
+		}
 
         public IActionResult Update(int? id)
         {

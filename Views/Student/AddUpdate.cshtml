@@ -1,0 +1,50 @@
+﻿@model Student
+<form method="post">
+	<div class="row">
+		<div class="col-10">
+			<div class="border p-3 mt-5">
+				<div class="row pb-3">
+					<h2 class="text-primary">@(Model == null ? "Add" : "Update")</h2>
+					<hr />
+				</div>
+				<div class="mb-3">
+					<label asp-for="StudentNo" class="p-0"> </label>
+					<input asp-for="StudentNo" class="form-control" />
+					<span asp-validation-for="StudentNo" class="text-danger"></span>
+				</div>
+				<div class="mb-3">
+					<label asp-for="StudentName" class="p-0"> </label>
+					<input asp-for="StudentName" class="form-control" />
+					<span asp-validation-for="StudentName" class="text-danger"></span>
+				</div>
+				<div class="mb-3">
+					<label asp-for="StudentSurname" class="p-0"> </label>
+					<input asp-for="StudentSurname" class="form-control" />
+					<span asp-validation-for="StudentSurname" class="text-danger"></span>
+				</div>
+
+				@if (Model != null)
+				{
+					<button type="submit" class="btn btn-lg btn-primary" style="width:200px">Update</button>
+				}
+				else
+				{
+					<button type="submit" class="btn btn-lg btn-primary" style="width:200px">Add</button>
+				}
+
+				<a asp-controller="Student" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
+					Back to Students
+				</a>
+
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+
+</form>
