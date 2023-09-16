@@ -12,8 +12,8 @@ using StudentTrackingSystem.Utility;
 namespace StudentTrackingSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230916163052_first")]
-    partial class first
+    [Migration("20230916214559_tables")]
+    partial class tables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -233,14 +233,17 @@ namespace StudentTrackingSystem.Migrations
 
                     b.Property<string>("StudentName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<long>("StudentNo")
+                        .HasMaxLength(25)
                         .HasColumnType("bigint");
 
                     b.Property<string>("StudentSurname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("Id");
 

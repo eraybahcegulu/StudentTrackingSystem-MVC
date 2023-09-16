@@ -230,14 +230,17 @@ namespace StudentTrackingSystem.Migrations
 
                     b.Property<string>("StudentName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<long>("StudentNo")
+                        .HasMaxLength(25)
                         .HasColumnType("bigint");
 
                     b.Property<string>("StudentSurname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("Id");
 

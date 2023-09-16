@@ -64,7 +64,10 @@ namespace StudentTrackingSystem.Controllers
 				_studentRepository.Save();
 				return RedirectToAction("Index", "Student");
 			}
-			return View();
+            else
+				return View();
+
+
 		}
 
         public IActionResult Update(int? id)

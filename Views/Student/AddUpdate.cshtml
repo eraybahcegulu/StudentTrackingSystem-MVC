@@ -1,16 +1,16 @@
 ﻿@model Student
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-10">
 			<div class="border p-3 mt-5">
 				<div class="row pb-3">
-					<h2 class="text-primary">@(Model == null ? "Add" : "Update")</h2>
+					<h2 class="text-primary">@(Model == null ? "Student Add" : "Student Update")</h2>
 					<hr />
 				</div>
 				<div class="mb-3">
 					<label asp-for="StudentNo" class="p-0"> </label>
-					<input asp-for="StudentNo" class="form-control" />
-					<span asp-validation-for="StudentNo" class="text-danger"></span>
+					<input asp-for="StudentNo" class="form-control" placeholder="max. 19 Char" />
+					<span asp-validation-for="StudentNo" class="text-danger"> </span>
 				</div>
 				<div class="mb-3">
 					<label asp-for="StudentName" class="p-0"> </label>

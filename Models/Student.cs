@@ -9,12 +9,18 @@ namespace StudentTrackingSystem.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
-        public long StudentNo { get; set; }
-
-        [Required]
+		[Required(ErrorMessage = "Student number cannot be left blank.")]
+		[DisplayName("Student No")]
+		public long? StudentNo { get; set; }
+        [MaxLength(25)]
+		[DisplayName("Student Name")]
+		[RegularExpression(@"^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]*$", ErrorMessage = "Student surname can only contain letters.")]
+		[Required(ErrorMessage = "Student name cannot be left blank.")]
         public string StudentName { get; set; }
-        [Required]
+        [MaxLength(25)]
+		[DisplayName("Student Surname")]
+		[RegularExpression(@"^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]*$", ErrorMessage = "Student surname can only contain letters.")]
+		[Required(ErrorMessage = "Student surname cannot be left blank.")]
         public string StudentSurname { get; set; }
     }
 }

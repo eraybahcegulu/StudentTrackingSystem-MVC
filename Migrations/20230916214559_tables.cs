@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StudentTrackingSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class tables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,9 +56,9 @@ namespace StudentTrackingSystem.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StudentNo = table.Column<long>(type: "bigint", nullable: false),
-                    StudentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StudentSurname = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    StudentNo = table.Column<long>(type: "bigint", maxLength: 25, nullable: false),
+                    StudentName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    StudentSurname = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
