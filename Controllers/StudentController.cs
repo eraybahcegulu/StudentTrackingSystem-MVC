@@ -1,13 +1,16 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StudentTrackingSystem.Models;
+using StudentTrackingSystem.Utility;
 using System.Data;
 using System.Drawing;
 
 namespace StudentTrackingSystem.Controllers
 {
+    // [Authorize(Roles = UserRoles.Role_Teacher)]
     public class StudentController : Controller
     {
         private readonly IStudentRepository _studentRepository;
@@ -68,11 +71,13 @@ namespace StudentTrackingSystem.Controllers
                         return NotFound();
                     }
 
+                    existingStudent.StudentNo = student.StudentNo;
                     existingStudent.StudentName = student.StudentName;
                     existingStudent.StudentSurname = student.StudentSurname;
                     existingStudent.MidtermExam = student.MidtermExam;
                     existingStudent.FinalExam = student.FinalExam;
                     existingStudent.Discontinuity = student.Discontinuity;
+                    existingStudent.EMail = student.EMail;
 
                     _studentRepository.Update(existingStudent);
                     TempData["success"] = "Student information updated!";

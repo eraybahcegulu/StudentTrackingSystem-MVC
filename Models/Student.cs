@@ -14,6 +14,11 @@ namespace StudentTrackingSystem.Models
 		[DisplayName("Student No")]
         [Range(1, long.MaxValue, ErrorMessage = "Student number cannot be 0.")]
         public long? StudentNo { get; set; }
+        [DisplayName("E-Mail")]
+		[Required(ErrorMessage = "Email is required.")]
+		[EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+		[RegularExpression(@"^.+@stu\.edu\.tr$", ErrorMessage = "Email must end with stu.edu.tr")]
+		public string EMail { get; set; }
         [MaxLength(25)]
 		[DisplayName("Student Name")]
 		[RegularExpression(@"^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]*$", ErrorMessage = "Student surname can only contain letters.")]

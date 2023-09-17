@@ -57,12 +57,13 @@ namespace StudentTrackingSystem.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentNo = table.Column<long>(type: "bigint", nullable: false),
+                    EMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StudentName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     StudentSurname = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     MidtermExam = table.Column<int>(type: "int", nullable: false),
                     FinalExam = table.Column<int>(type: "int", nullable: false),
                     Discontinuity = table.Column<int>(type: "int", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Message = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {

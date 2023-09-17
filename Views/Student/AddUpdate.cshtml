@@ -4,7 +4,7 @@
 		<div class="col-10">
 			<div class="border p-3 mt-5">
 				<div class="row pb-3">
-					<h2 class="text-primary">@(Model == null ? "Student Add" : "Student Update")</h2>
+					<h2 class="text-primary">@(Model == null ? "Add Student" : "Update Student")</h2>
 					<hr />
 				</div>
 				<div class="mb-3">
@@ -18,16 +18,38 @@
 
 					else
 					{
-						<input asp-for="StudentNo" class="form-control" type="number" placeholder="max. 19 Char" title="Only numbers can be entered for the student number" />
+						<input asp-for="StudentNo" class="form-control" type="number" required placeholder="max. 19 Char" title="Only numbers can be entered for the student number" />
 						<span asp-validation-for="StudentNo" class="text-danger"> </span>
 					}
 
 				</div>
+				@if (Model != null)
+				{
+					<div class="mb-3">
+						<label asp-for="EMail" class="p-0"> </label>
+						<input asp-for="EMail" class="form-control" readonly required placeholder="@@stu.edu.tr"  title="Please enter a valid email address." />
+						<span asp-validation-for="EMail" class="text-danger"></span>
+					</div>
+
+
+
+				}
+
+				else
+				{
+					<div class="mb-3">
+						<label asp-for="EMail" class="p-0"> </label>
+						<input asp-for="EMail" class="form-control" required placeholder="...@@stu.edu.tr"  title="Please enter a valid email address." />
+						<span asp-validation-for="EMail" class="text-danger"></span>
+					</div>
+				}
+
 				<div class="mb-3">
 					<label asp-for="StudentName" class="p-0"> </label>
 					<input asp-for="StudentName" class="form-control" required pattern="[A-Za-zğüşıöçĞÜŞİÖÇ]+" title="Only letters can be entered for the name." />
 					<span asp-validation-for="StudentName" class="text-danger"></span>
 				</div>
+
 				<div class="mb-3">
 					<label asp-for="StudentSurname" class="p-0"> </label>
 					<input asp-for="StudentSurname" class="form-control" required pattern="[A-Za-zğüşıöçĞÜŞİÖÇ]+" title="Only letters can be entered for the surname." />
