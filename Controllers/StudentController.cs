@@ -10,7 +10,7 @@ using System.Drawing;
 
 namespace StudentTrackingSystem.Controllers
 {
-    // [Authorize(Roles = UserRoles.Role_Teacher)]
+     [Authorize(Roles = UserRoles.Role_Teacher)]
     public class StudentController : Controller
     {
         private readonly IStudentRepository _studentRepository;

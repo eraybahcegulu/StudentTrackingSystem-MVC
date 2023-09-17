@@ -1,0 +1,30 @@
+﻿@model Student
+
+@if (Model != null)
+{
+    ViewData["Title"] = "My Information";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Welcome, @Model.StudentName @Model.StudentSurname</h1>
+                </div>
+                <div class="card-body">
+                    <h2>Your Student Information:</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Student ID:</strong> @Model.Id</li>
+                        <li class="list-group-item"><strong>Student No:</strong> @Model.StudentNo</li>
+                        <li class="list-group-item"><strong>Email:</strong> @Model.EMail</li>
+                        <li class="list-group-item"><strong>Midterm Exam:</strong> @Model.MidtermExam</li>
+                        <li class="list-group-item"><strong>Final Exam:</strong> @Model.FinalExam</li>
+                        <li class="list-group-item"><strong>Discontinuity:</strong> @Model.Discontinuity</li>
+                        <li class="list-group-item"><strong>Message:</strong> @Model.Message</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

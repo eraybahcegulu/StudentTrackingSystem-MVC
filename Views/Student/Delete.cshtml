@@ -1,5 +1,10 @@
 ﻿@model Student
 
+@if (Model != null)
+{
+	ViewData["Title"] = "Delete Student";
+}
+
 <form method="post">
 
 	<div class="border p-3 mt-5">

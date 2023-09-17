@@ -1,0 +1,37 @@
+﻿@model Student
+
+@if (Model != null)
+{
+    ViewData["Title"] = "My Information";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            @if (TempData["danger"] != null)
+            {
+                <div class="alert alert-danger">
+                    <strong>@TempData["danger"]</strong>
+                </div>
+            }
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Welcome, </h1>
+                </div>
+                <div class="card-body">
+                    <h1>Welcome, @ViewBag.UserEmail!</h1>
+                    <h2>Your Student Information:</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Student ID:</strong> </li>
+                        <li class="list-group-item"><strong>Student No:</strong> </li>
+                        <li class="list-group-item"><strong>Email:</strong> </li>
+                        <li class="list-group-item"><strong>Midterm Exam:</strong> </li>
+                        <li class="list-group-item"><strong>Final Exam:</strong> </li>
+                        <li class="list-group-item"><strong>Discontinuity:</strong> </li>
+                        <li class="list-group-item"><strong>Message:</strong> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

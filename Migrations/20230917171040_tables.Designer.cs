@@ -12,7 +12,7 @@ using StudentTrackingSystem.Utility;
 namespace StudentTrackingSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230917131521_tables")]
+    [Migration("20230917171040_tables")]
     partial class tables
     {
         /// <inheritdoc />

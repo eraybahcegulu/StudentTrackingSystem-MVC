@@ -1,95 +1,95 @@
 ﻿@model Student
-<form method="post" enctype="multipart/form-data">
-	<div class="row">
-		<div class="col-10">
-			<div class="border p-3 mt-5">
-				<div class="row pb-3">
-					<h2 class="text-primary">@(Model == null ? "Add Student" : "Update Student")</h2>
-					<hr />
-				</div>
-				<div class="mb-3">
-					<label asp-for="StudentNo" class="p-0"> </label>
-
-					@if (Model != null)
-					{
-						<input asp-for="StudentNo" class="form-control" type="number" readonly placeholder="max. 19 Char" title="Only numbers can be entered for the student number." />
-
-					}
-
-					else
-					{
-						<input asp-for="StudentNo" class="form-control" type="number" required placeholder="max. 19 Char" title="Only numbers can be entered for the student number" />
-						<span asp-validation-for="StudentNo" class="text-danger"> </span>
-					}
-
-				</div>
-				@if (Model != null)
-				{
-					<div class="mb-3">
-						<label asp-for="EMail" class="p-0"> </label>
-						<input asp-for="EMail" class="form-control" readonly required placeholder="@@stu.edu.tr"  title="Please enter a valid email address." />
-						<span asp-validation-for="EMail" class="text-danger"></span>
-					</div>
 
 
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="border p-3">
+                <h2 class="text-primary">@(Model == null ? "Add Student" : "Update Student")</h2>
 
-				}
+                @if (Model != null)
+                {
+                     ViewData["Title"] = "Update Student";
+                }
 
-				else
-				{
-					<div class="mb-3">
-						<label asp-for="EMail" class="p-0"> </label>
-						<input asp-for="EMail" class="form-control" required placeholder="...@@stu.edu.tr"  title="Please enter a valid email address." />
-						<span asp-validation-for="EMail" class="text-danger"></span>
-					</div>
-				}
+                @if (Model == null)
+                {
+                    ViewData["Title"] = "Add Student";
+                }
+                <hr />
 
-				<div class="mb-3">
-					<label asp-for="StudentName" class="p-0"> </label>
-					<input asp-for="StudentName" class="form-control" required pattern="[A-Za-zğüşıöçĞÜŞİÖÇ]+" title="Only letters can be entered for the name." />
-					<span asp-validation-for="StudentName" class="text-danger"></span>
-				</div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label asp-for="StudentNo" class="p-0"> </label>
+                        @if (Model != null)
+                        {
+                            <input asp-for="StudentNo" class="form-control" type="number" readonly placeholder="max. 19 Char" title="Only numbers can be entered for the student number." />
+                        }
+                        else
+                        {
+                            <input asp-for="StudentNo" class="form-control" type="number" required placeholder="max. 19 Char" title="Only numbers can be entered for the student number" />
+                            <span asp-validation-for="StudentNo" class="text-danger"> </span>
+                        }
+                    </div>
 
-				<div class="mb-3">
-					<label asp-for="StudentSurname" class="p-0"> </label>
-					<input asp-for="StudentSurname" class="form-control" required pattern="[A-Za-zğüşıöçĞÜŞİÖÇ]+" title="Only letters can be entered for the surname." />
-					<span asp-validation-for="StudentSurname" class="text-danger"></span>
-				</div>
-				<div class="mb-3">
-					<label asp-for="MidtermExam" class="p-0"></label>
-					<input asp-for="MidtermExam" class="form-control" type="number" required placeholder="0-100" min="0" max="100" step="1" title="Only numbers can be entered for the midterm exam." />
-				</div>
-				<div class="mb-3">
-					<label asp-for="FinalExam" class="p-0"></label>
-					<input asp-for="FinalExam" class="form-control" type="number" required placeholder="0-100" min="0" max="100" step="1" title="Only numbers can be entered for the final exam." />
-				</div>
-				<div class="mb-3">
-					<label asp-for="Discontinuity" class="p-0"></label>
-					<input asp-for="Discontinuity" class="form-control" type="number" required placeholder="0-100" min="0" max="100" step="1" title="Only numbers can be entered for the discontinuity." />
-				</div>
+                    @if (Model != null)
+                    {
+                        <div class="mb-3">
+                            <label asp-for="EMail" class="p-0"> </label>
+                            <input asp-for="EMail" class="form-control" readonly required placeholder="@@stu.edu.tr" title="Please enter a valid email address." />
+                            <span asp-validation-for="EMail" class="text-danger"></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mb-3">
+                            <label asp-for="EMail" class="p-0"> </label>
+                            <input asp-for="EMail" class="form-control" required placeholder="...@@stu.edu.tr" title="Please enter a valid email address." />
+                            <span asp-validation-for="EMail" class="text-danger"></span>
+                        </div>
+                    }
 
-				@if (Model != null)
-				{
-					<button type="submit" class="btn btn-lg btn-primary" style="width:200px">Update</button>
-				}
-				else
-				{
-					<button type="submit" class="btn btn-lg btn-primary" style="width:200px">Add</button>
-				}
+                    <div class="mb-3">
+                        <label asp-for="StudentName" class="p-0"> </label>
+                        <input asp-for="StudentName" class="form-control" required pattern="[A-Za-zğüşıöçĞÜŞİÖÇ]+" title="Only letters can be entered for the name." />
+                        <span asp-validation-for="StudentName" class="text-danger"></span>
+                    </div>
 
-				<a asp-controller="Student" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
-					Back to Students
-				</a>
+                    <div class="mb-3">
+                        <label asp-for="StudentSurname" class="p-0"> </label>
+                        <input asp-for="StudentSurname" class="form-control" required pattern="[A-Za-zğüşıöçĞÜŞİÖÇ]+" title="Only letters can be entered for the surname." />
+                        <span asp-validation-for="StudentSurname" class="text-danger"></span>
+                    </div>
 
+                    <div class="mb-3">
+                        <label asp-for="MidtermExam" class="p-0"></label>
+                        <input asp-for="MidtermExam" class="form-control" type="number" required placeholder="0-100" min="0" max="100" step="1" title="Only numbers can be entered for the midterm exam." />
+                    </div>
 
-			</div>
-		</div>
+                    <div class="mb-3">
+                        <label asp-for="FinalExam" class="p-0"></label>
+                        <input asp-for="FinalExam" class="form-control" type="number" required placeholder="0-100" min="0" max="100" step="1" title="Only numbers can be entered for the final exam." />
+                    </div>
 
-	</div>
+                    <div class="mb-3">
+                        <label asp-for="Discontinuity" class="p-0"></label>
+                        <input asp-for="Discontinuity" class="form-control" type="number" required placeholder="0-100" min="0" max="100" step="1" title="Only numbers can be entered for the discontinuity." />
+                    </div>
 
+                    @if (Model != null)
+                    {
+                        <button type="submit" class="btn btn-lg btn-primary" style="width:200px">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-lg btn-primary" style="width:200px">Add</button>
+                    }
 
-
-
-
-
-</form>
+                    <a asp-controller="Student" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
+                        Back to Students
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
