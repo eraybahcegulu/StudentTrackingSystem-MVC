@@ -24,6 +24,8 @@ DBCC CHECKIDENT ('TableName', RESEED, 0);
 
 ![2](https://github.com/eraybahcegulu/StudentTrackingSystem-MVC/assets/84785201/debbc3ca-0332-4203-b5d2-caebe012bfc4)
 
+![Screenshot_1](https://github.com/eraybahcegulu/StudentTrackingSystem-MVC/assets/84785201/ab718489-a5f0-4959-a03b-cf144c206226)
+
 ![Screenshot_10](https://github.com/eraybahcegulu/StudentTrackingSystem-MVC/assets/84785201/bb9e0bd7-4b1f-4f16-aae1-c456f7fa4eb7)
 
 ![Screenshot_9](https://github.com/eraybahcegulu/StudentTrackingSystem-MVC/assets/84785201/fa45bae4-899c-484e-b5d0-e3395ca59f5b)
