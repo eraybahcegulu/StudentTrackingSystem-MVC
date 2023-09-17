@@ -9,18 +9,41 @@
 				</div>
 				<div class="mb-3">
 					<label asp-for="StudentNo" class="p-0"> </label>
-					<input asp-for="StudentNo" class="form-control" placeholder="max. 19 Char" />
-					<span asp-validation-for="StudentNo" class="text-danger"> </span>
+
+					@if (Model != null)
+					{
+						<input asp-for="StudentNo" class="form-control" type="number" readonly placeholder="max. 19 Char" title="Only numbers can be entered for the student number." />
+
+					}
+
+					else
+					{
+						<input asp-for="StudentNo" class="form-control" type="number" placeholder="max. 19 Char" title="Only numbers can be entered for the student number" />
+						<span asp-validation-for="StudentNo" class="text-danger"> </span>
+					}
+
 				</div>
 				<div class="mb-3">
 					<label asp-for="StudentName" class="p-0"> </label>
-					<input asp-for="StudentName" class="form-control" />
+					<input asp-for="StudentName" class="form-control" required pattern="[A-Za-zğüşıöçĞÜŞİÖÇ]+" title="Only letters can be entered for the name." />
 					<span asp-validation-for="StudentName" class="text-danger"></span>
 				</div>
 				<div class="mb-3">
 					<label asp-for="StudentSurname" class="p-0"> </label>
-					<input asp-for="StudentSurname" class="form-control" />
+					<input asp-for="StudentSurname" class="form-control" required pattern="[A-Za-zğüşıöçĞÜŞİÖÇ]+" title="Only letters can be entered for the surname." />
 					<span asp-validation-for="StudentSurname" class="text-danger"></span>
+				</div>
+				<div class="mb-3">
+					<label asp-for="MidtermExam" class="p-0"></label>
+					<input asp-for="MidtermExam" class="form-control" type="number" required placeholder="0-100" min="0" max="100" step="1" title="Only numbers can be entered for the midterm exam." />
+				</div>
+				<div class="mb-3">
+					<label asp-for="FinalExam" class="p-0"></label>
+					<input asp-for="FinalExam" class="form-control" type="number" required placeholder="0-100" min="0" max="100" step="1" title="Only numbers can be entered for the final exam." />
+				</div>
+				<div class="mb-3">
+					<label asp-for="Discontinuity" class="p-0"></label>
+					<input asp-for="Discontinuity" class="form-control" type="number" required placeholder="0-100" min="0" max="100" step="1" title="Only numbers can be entered for the discontinuity." />
 				</div>
 
 				@if (Model != null)

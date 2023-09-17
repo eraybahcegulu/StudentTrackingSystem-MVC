@@ -56,9 +56,13 @@ namespace StudentTrackingSystem.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StudentNo = table.Column<long>(type: "bigint", maxLength: 25, nullable: false),
+                    StudentNo = table.Column<long>(type: "bigint", nullable: false),
                     StudentName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    StudentSurname = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false)
+                    StudentSurname = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    MidtermExam = table.Column<int>(type: "int", nullable: false),
+                    FinalExam = table.Column<int>(type: "int", nullable: false),
+                    Discontinuity = table.Column<int>(type: "int", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -228,13 +228,25 @@ namespace StudentTrackingSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Discontinuity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FinalExam")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MidtermExam")
+                        .HasColumnType("int");
+
                     b.Property<string>("StudentName")
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<long>("StudentNo")
-                        .HasMaxLength(25)
+                    b.Property<long?>("StudentNo")
+                        .IsRequired()
                         .HasColumnType("bigint");
 
                     b.Property<string>("StudentSurname")

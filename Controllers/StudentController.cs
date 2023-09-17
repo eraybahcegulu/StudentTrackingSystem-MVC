@@ -24,9 +24,6 @@ namespace StudentTrackingSystem.Controllers
 
 		public IActionResult AddUpdate(int? id)
 		{
-
-
-
 			if (id == null || id == 0)
 			{
 				return View();
@@ -45,57 +42,39 @@ namespace StudentTrackingSystem.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult AddUpdate(Student student)
-		{
-			if (ModelState.IsValid)
-			{
-
-				if (student.Id == 0)
-				{
-					_studentRepository.Add(student);
-					TempData["success"] = "Student added successfully!";
-				}
-				else
-				{
-					_studentRepository.Update(student);
-					TempData["success"] = "Student information updated!";
-				}
-
-				_studentRepository.Save();
-				return RedirectToAction("Index", "Student");
-			}
-            else
-				return View();
-
-
-		}
-
-        public IActionResult Update(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Student? studentDB = _studentRepository.Get(u => u.Id == id);
-            if (studentDB == null)
-            {
-                return NotFound();
-            }
-            return View(studentDB);
-        }
-
-        [HttpPost]
-        public IActionResult Update(Student student)
+        public IActionResult AddUpdate(Student student)
         {
             if (ModelState.IsValid)
             {
-                _studentRepository.Update(student);
+                if (student.Id == 0)
+                {
+                    bool isStudentIdExists = _studentRepository.GetAll().Any(s => s.StudentNo == student.StudentNo);
+
+                    if (isStudentIdExists)
+                    {
+                        TempData["danger"] = "This student number is already registered in the system!";
+                        return RedirectToAction("Index", "Student");
+                    }
+
+                    _studentRepository.Add(student);
+                    TempData["success"] = "Student added successfully!";
+                }
+                else
+                {
+
+                    _studentRepository.Update(student);
+                    TempData["success"] = "Student information updated!";
+                }
+
                 _studentRepository.Save();
-                TempData["success"] = "Student information updated!";
                 return RedirectToAction("Index", "Student");
             }
-            return View();
+            else
+            {
+                return View();
+            }
         }
+
 
         public IActionResult Delete(int? id)
         {
@@ -122,6 +101,38 @@ namespace StudentTrackingSystem.Controllers
             _studentRepository.Delete(student);
             _studentRepository.Save();
             TempData["success"] = "Student deleted successfully!";
+            return RedirectToAction("Index", "Student");
+        }
+
+
+        public IActionResult Message(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Student? studentDB = _studentRepository.Get(u => u.Id == id);
+            if (studentDB == null)
+            {
+                return NotFound();
+            }
+            return View(studentDB);
+        }
+
+        [HttpPost, ActionName("Message")]
+        public IActionResult MessagePOST(int? id, string message)
+        {
+
+            Student? student = _studentRepository.Get(u => u.Id == id);
+            if (student == null)
+            {
+                return NotFound(); 
+            }
+
+            student.Message = message;
+            _studentRepository.Update(student);
+            _studentRepository.Save();
+            TempData["success"] = "Message sent successfully!";
             return RedirectToAction("Index", "Student");
         }
     }
