@@ -41,7 +41,7 @@ namespace StudentTrackingSystem.Controllers
 
 		}
 
-		[HttpPost]
+        [HttpPost]
         public IActionResult AddUpdate(Student student)
         {
             if (ModelState.IsValid)
@@ -61,8 +61,20 @@ namespace StudentTrackingSystem.Controllers
                 }
                 else
                 {
+                    var existingStudent = _studentRepository.Get(u => u.Id == student.Id);
 
-                    _studentRepository.Update(student);
+                    if (existingStudent == null)
+                    {
+                        return NotFound();
+                    }
+
+                    existingStudent.StudentName = student.StudentName;
+                    existingStudent.StudentSurname = student.StudentSurname;
+                    existingStudent.MidtermExam = student.MidtermExam;
+                    existingStudent.FinalExam = student.FinalExam;
+                    existingStudent.Discontinuity = student.Discontinuity;
+
+                    _studentRepository.Update(existingStudent);
                     TempData["success"] = "Student information updated!";
                 }
 
@@ -74,6 +86,7 @@ namespace StudentTrackingSystem.Controllers
                 return View();
             }
         }
+
 
 
         public IActionResult Delete(int? id)
