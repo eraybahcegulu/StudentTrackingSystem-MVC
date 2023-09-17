@@ -40,5 +40,7 @@ namespace StudentTrackingSystem.Models
         [MaxLength(100)]
         [DisplayName("Last Message")]
         public string? Message { get; set; }
+
+        public string? FileName { get; set; }
     }
 }

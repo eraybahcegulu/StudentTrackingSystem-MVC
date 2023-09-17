@@ -3,21 +3,28 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.FileProviders;
 using StudentTrackingSystem.Models;
 using StudentTrackingSystem.Utility;
 using System.Data;
 using System.Drawing;
 
+
 namespace StudentTrackingSystem.Controllers
 {
-     [Authorize(Roles = UserRoles.Role_Teacher)]
+     //[Authorize(Roles = UserRoles.Role_Teacher)]
     public class StudentController : Controller
     {
         private readonly IStudentRepository _studentRepository;
 
-        public StudentController(IStudentRepository context)
+        private readonly IFileProvider _fileProvider;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public StudentController(IStudentRepository context, IFileProvider fileProvider, IWebHostEnvironment webHostEnvironment)
         {
             _studentRepository = context;
+            _fileProvider = fileProvider;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -153,5 +160,123 @@ namespace StudentTrackingSystem.Controllers
             TempData["success"] = "Message sent successfully!";
             return RedirectToAction("Index", "Student");
         }
+
+
+
+
+
+        public IActionResult DownloadFile(string fileName)
+        {
+            var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads/rar", fileName);
+            if (!System.IO.File.Exists(filePath))
+            {
+                return NotFound();
+            }
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "application/x-rar-compressed", fileName);
+        }
+
+
+
+        [HttpGet]
+        public IActionResult Upload(int id)
+        {
+   
+            Student student = _studentRepository.Get(u => u.Id == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+
+            var model = new FileUploadModel
+            {
+                Student = student
+            };
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Upload")]
+        public async Task<IActionResult> UploadPOST(int? id, FileUploadModel model)
+        {
+            Student student = _studentRepository.Get(u => u.Id == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            if (model.RarFile != null && model.RarFile.Length > 0)
+            {
+
+                long maxFileSizeBytes = 20000000;
+
+                if (model.RarFile.Length > maxFileSizeBytes)
+                {
+                    TempData["danger"] = "File size is too large. You can upload a file up to 20 MB in size.";
+                    return RedirectToAction("Index", "Student");
+                }
+
+                if (model.RarFile.Length == 0)
+                {
+                    TempData["danger"] = "Empty file cannot be uploaded.";
+                    return RedirectToAction("Index", "Student");
+                }
+
+                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads/rar");
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + model.RarFile.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.RarFile.CopyToAsync(stream);
+                }
+
+                student.FileName = uniqueFileName;
+
+                _studentRepository.Update(student);
+                _studentRepository.Save();
+
+                TempData["success"] = "The file has been uploaded successfully!";
+                return RedirectToAction("Index", "Student");
+            }
+
+            TempData["danger"] = "Empty file cannot be uploaded.";
+            return RedirectToAction("Index", "Student");
+        }
+
+        [HttpPost]
+        [HttpPost]
+        public IActionResult DeleteHomework(int studentId)
+        {
+            Student student = _studentRepository.Get(u => u.Id == studentId);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            // Dosya yolunu sil (varsa)
+            if (!string.IsNullOrEmpty(student.FileName))
+            {
+                var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads/rar", student.FileName);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+
+            // Veritabanında dosya yolu bilgisini temizle
+            student.FileName = null; // veya boş bir dize ("")
+
+            _studentRepository.Update(student);
+            _studentRepository.Save();
+
+            TempData["success"] = "The homework has been deleted successfully!";
+            return RedirectToAction("Index", "Student");
+        }
+
+
+
+
     }
 }

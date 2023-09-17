@@ -3,6 +3,9 @@ using StudentTrackingSystem.Models;
 using StudentTrackingSystem.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http.Features;
+using FluentAssertions.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +16,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
 
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+
+
+
 
 var app = builder.Build();
 

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
@@ -20,6 +21,8 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\uploads\" />
+    <Folder Include="wwwroot\uploads\rar\" />
   </ItemGroup>
 
 </Project>

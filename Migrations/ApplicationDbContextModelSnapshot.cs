@@ -235,6 +235,9 @@ namespace StudentTrackingSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("FinalExam")
                         .HasColumnType("int");
 

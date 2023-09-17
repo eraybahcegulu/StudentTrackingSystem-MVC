@@ -53,8 +53,9 @@
                     <td>@student.Discontinuity</td>
                     <td>
                         <div class="btn-group" role="group" style="display:flex; justify-content:space-between">
-                            <a asp-controller="Student" asp-action="AddUpdate" asp-route-id="@student.Id" type="button" class="btn btn-primary">Update</a>
-                            <a asp-controller="Student" asp-action="Message" asp-route-id="@student.Id" type="button" class="btn btn-info">Message</a>
+                            <a asp-controller="Student" asp-action="AddUpdate" asp-route-id="@student.Id" type="button" class="btn btn-success">Update</a>
+                            <a asp-controller="Student" asp-action="Message" asp-route-id="@student.Id" type="button" class="btn btn-primary">Message</a>
+                            <a asp-controller="Student" asp-action="Upload" asp-route-id="@student.Id" type="button" class="btn btn-warning">Homework</a>
                             <a asp-controller="Student" asp-action="Delete" asp-route-id="@student.Id" type="button" class="btn btn-danger">Delete</a>
                         </div>
                     </td>

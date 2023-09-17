@@ -1,0 +1,15 @@
+"installscript"
+{
+	"run process"
+	{
+		"directx"
+		{
+			"process 1"		"%INSTALLDIR%\\directx_installer\\DXSETUP.exe"
+			"command 1"		"/silent"
+		}
+	}
+}
+"kvsignatures"
+{
+	"installscript"		"99b94253d692c4491e34304e01c26162842455a2c735d070b741e3f77831802d34e48c794ce15694fb78e10f1c20e4d400c8244e68cee489dffc1bb0182230db733f9445740c85b991864540b3b8ec236fa1a133b6c8a93603549118d6ae3f313fca82a6da617e4e26427a3928d5b9d5bd393316bfed85edf5a8731ab3b4db9d"
+}
