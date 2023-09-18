@@ -7,9 +7,9 @@
 -------------------------------------------------------
 DBCC CHECKIDENT ('TableName', RESEED, 0);
 -------------------------------------------------------
-![1](https://github.com/eraybahcegulu/StudentTrackingSystem-MVC/assets/84785201/86fc3bce-a310-45fc-864e-36cf77ac751c)
+![1](https://github.com/eraybahcegulu/StudentTrackingSystem-MVC/assets/84785201/44ab5417-aaf3-4493-a446-2be481f8d307)
 
-![2](https://github.com/eraybahcegulu/StudentTrackingSystem-MVC/assets/84785201/b3dd34d1-ad04-4e81-a699-4922872d47e5)
+![2](https://github.com/eraybahcegulu/StudentTrackingSystem-MVC/assets/84785201/1a1009c4-d196-44c5-8b09-e1002afc1f16)
 
 ![3](https://github.com/eraybahcegulu/StudentTrackingSystem-MVC/assets/84785201/a36bb81b-a752-43ec-94fc-b799245d5b6d)
 
