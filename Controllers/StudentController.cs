@@ -149,7 +149,9 @@ namespace StudentTrackingSystem.Controllers
             return View(studentDB);
         }
 
+
         [Authorize(Roles = UserRoles.Role_Teacher)]
+
         [HttpPost, ActionName("Message")]
         public IActionResult MessagePOST(int? id, string message)
         {
@@ -170,18 +172,32 @@ namespace StudentTrackingSystem.Controllers
 
 
 
+
         [Authorize(Roles = UserRoles.Role_Student)]
-        public IActionResult DownloadFile(string fileName)
+        public IActionResult DownloadFile(string? fileName )
         {
             var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", fileName);
             if (!System.IO.File.Exists(filePath))
             {
-                return NotFound();
+                Student student = _studentRepository.Get(u => u.FileName == fileName);
+                if (student == null)
+                {
+                    return NotFound();
+                }
+
+                student.FileName = null;
+                _studentRepository.Update(student);
+                _studentRepository.Save();
+
+                TempData["danger"] = "The homework file you tried to download has been removed from the system.";
+                TempData["danger"] = "The homework file you tried to download has been removed from the system.";
+                return RedirectToAction("Index", "StudentHome");
             }
 
             byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
             return File(fileBytes, "application/octet-stream", fileName);
         }
+
 
 
         [Authorize(Roles = UserRoles.Role_Teacher)]

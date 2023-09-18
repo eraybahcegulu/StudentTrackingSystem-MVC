@@ -48,8 +48,17 @@
                             }
                         </li>
                     </ul>
+                    @if (TempData["danger"] != null)
+                    {
+                        <div style="margin-top:10px;" class="alert alert-danger">
+                            <strong>@TempData["danger"]</strong>
+                        </div>
+                    }
+
                 </div>
+
             </div>
+
         </div>
     </div>
 </div>
