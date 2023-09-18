@@ -12,7 +12,7 @@ using System.Drawing;
 
 namespace StudentTrackingSystem.Controllers
 {
-     [Authorize(Roles = UserRoles.Role_Teacher)]
+     
     public class StudentController : Controller
     {
         private readonly IStudentRepository _studentRepository;
@@ -26,13 +26,16 @@ namespace StudentTrackingSystem.Controllers
             _fileProvider = fileProvider;
             _webHostEnvironment = webHostEnvironment;
         }
+
+        [Authorize(Roles = UserRoles.Role_Teacher)]
         public IActionResult Index()
         {
             List<Student> objStudentList = _studentRepository.GetAll().ToList();
             return View(objStudentList);
         }
 
-		public IActionResult AddUpdate(int? id)
+        [Authorize(Roles = UserRoles.Role_Teacher)]
+        public IActionResult AddUpdate(int? id)
 		{
 			if (id == null || id == 0)
 			{
@@ -51,6 +54,7 @@ namespace StudentTrackingSystem.Controllers
 
 		}
 
+        [Authorize(Roles = UserRoles.Role_Teacher)]
         [HttpPost]
         public IActionResult AddUpdate(Student student)
         {
@@ -100,7 +104,7 @@ namespace StudentTrackingSystem.Controllers
         }
 
 
-
+        [Authorize(Roles = UserRoles.Role_Teacher)]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -115,6 +119,7 @@ namespace StudentTrackingSystem.Controllers
             return View(studentDB);
         }
 
+        [Authorize(Roles = UserRoles.Role_Teacher)]
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
@@ -129,7 +134,7 @@ namespace StudentTrackingSystem.Controllers
             return RedirectToAction("Index", "Student");
         }
 
-
+        [Authorize(Roles = UserRoles.Role_Teacher)]
         public IActionResult Message(int? id)
         {
             if (id == null || id == 0)
@@ -144,6 +149,7 @@ namespace StudentTrackingSystem.Controllers
             return View(studentDB);
         }
 
+        [Authorize(Roles = UserRoles.Role_Teacher)]
         [HttpPost, ActionName("Message")]
         public IActionResult MessagePOST(int? id, string message)
         {
@@ -164,7 +170,7 @@ namespace StudentTrackingSystem.Controllers
 
 
 
-
+        [Authorize(Roles = UserRoles.Role_Student)]
         public IActionResult DownloadFile(string fileName)
         {
             var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", fileName);
@@ -178,7 +184,7 @@ namespace StudentTrackingSystem.Controllers
         }
 
 
-
+        [Authorize(Roles = UserRoles.Role_Teacher)]
         [HttpGet]
         public IActionResult Upload(int id)
         {
@@ -197,6 +203,7 @@ namespace StudentTrackingSystem.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = UserRoles.Role_Teacher)]
         [HttpPost, ActionName("Upload")]
         public async Task<IActionResult> UploadPOST(int? id, FileUploadModel model)
         {
@@ -245,6 +252,7 @@ namespace StudentTrackingSystem.Controllers
             return RedirectToAction("Index", "Student");
         }
 
+        [Authorize(Roles = UserRoles.Role_Teacher)]
         [HttpPost]
         public IActionResult DeleteHomework(int studentId)
         {
