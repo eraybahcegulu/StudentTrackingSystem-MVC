@@ -30,9 +30,13 @@ namespace StudentTrackingSystem.Models
 		[Required(ErrorMessage = "Student surname cannot be left blank.")]
         public string StudentSurname { get; set; }
 		[Range(0, 100, ErrorMessage = "The exam result can be between 0-100.")]
-		public int MidtermExam { get; set; }
+
+        [DisplayName("Midterm Exam")]
+        public int MidtermExam { get; set; }
 		[Range(0, 100, ErrorMessage = "The exam result can be between 0-100.")]
-		public int FinalExam { get; set; }
+
+        [DisplayName("Final Exam")]
+        public int FinalExam { get; set; }
 
 		[Range(0, 100, ErrorMessage = "Discontinuity can be between 0-100.")]
 		public int Discontinuity { get; set; }
