@@ -12,8 +12,8 @@ using StudentTrackingSystem.Utility;
 namespace StudentTrackingSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230917203652_rarfile")]
-    partial class rarfile
+    [Migration("20230918084247_tables")]
+    partial class tables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -12,7 +12,7 @@ using System.Drawing;
 
 namespace StudentTrackingSystem.Controllers
 {
-     //[Authorize(Roles = UserRoles.Role_Teacher)]
+     [Authorize(Roles = UserRoles.Role_Teacher)]
     public class StudentController : Controller
     {
         private readonly IStudentRepository _studentRepository;
@@ -245,7 +245,6 @@ namespace StudentTrackingSystem.Controllers
             return RedirectToAction("Index", "Student");
         }
 
-        [HttpPost]
         [HttpPost]
         public IActionResult DeleteHomework(int studentId)
         {

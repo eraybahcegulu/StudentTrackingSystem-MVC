@@ -15,7 +15,6 @@
                 <div class="card-body">
                     <h2>Your Student Information:</h2>
                     <ul class="list-group">
-                        <li class="list-group-item"><strong>Student ID:</strong> @Model.Id</li>
                         <li class="list-group-item"><strong>Student No:</strong> @Model.StudentNo</li>
                         <li class="list-group-item"><strong>Email:</strong> @Model.EMail</li>
                         <li class="list-group-item"><strong>Midterm Exam:</strong> @Model.MidtermExam</li>
@@ -23,7 +22,7 @@
                         <li class="list-group-item"><strong>Discontinuity:</strong> @Model.Discontinuity</li>
 
 
-                        <li class="list-group-item"><strong>Last Message:</strong>
+                        <li class="list-group-item"><strong>Your Last Message:</strong>
                            @if (!string.IsNullOrEmpty(Model.Message))
                             {
                                 @Model.Message
@@ -40,7 +39,7 @@
                             <strong>Your Last Homework:</strong>
                             @if (!string.IsNullOrEmpty(Model.FileName))
                             {
-                                string truncatedFileName = Model.FileName.Length > 10 ? Model.FileName.Substring(30) : Model.FileName;
+                                string truncatedFileName = Model.FileName.Length > 10 ? Model.FileName.Substring(37) : Model.FileName;
                                 <a href="@Url.Action("DownloadFile", "Student", new { fileName = Model.FileName })"> @truncatedFileName</a>
                             }
                             else
