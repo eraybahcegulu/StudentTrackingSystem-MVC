@@ -21,13 +21,27 @@
                         <li class="list-group-item"><strong>Midterm Exam:</strong> @Model.MidtermExam</li>
                         <li class="list-group-item"><strong>Final Exam:</strong> @Model.FinalExam</li>
                         <li class="list-group-item"><strong>Discontinuity:</strong> @Model.Discontinuity</li>
-                        <li class="list-group-item"><strong>Message:</strong> @Model.Message</li>
+
+
+                        <li class="list-group-item"><strong>Last Message:</strong>
+                           @if (!string.IsNullOrEmpty(Model.Message))
+                            {
+                                @Model.Message
+                            }
+                            else
+                            {
+                                <span>No Message</span>
+                            }
+
+                        </li>
+
+
                         <li class="list-group-item">
-                            <strong>Your Homework:</strong>
+                            <strong>Your Last Homework:</strong>
                             @if (!string.IsNullOrEmpty(Model.FileName))
                             {
-                                <a href="@Url.Action("DownloadFile", "Student", new { fileName = Model.FileName })"> Download</a>
-
+                                string truncatedFileName = Model.FileName.Length > 10 ? Model.FileName.Substring(30) : Model.FileName;
+                                <a href="@Url.Action("DownloadFile", "Student", new { fileName = Model.FileName })"> @truncatedFileName</a>
                             }
                             else
                             {

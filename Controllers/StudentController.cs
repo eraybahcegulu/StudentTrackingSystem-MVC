@@ -167,14 +167,14 @@ namespace StudentTrackingSystem.Controllers
 
         public IActionResult DownloadFile(string fileName)
         {
-            var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads/rar", fileName);
+            var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", fileName);
             if (!System.IO.File.Exists(filePath))
             {
                 return NotFound();
             }
 
             byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
-            return File(fileBytes, "application/x-rar-compressed", fileName);
+            return File(fileBytes, "application/octet-stream", fileName);
         }
 
 
@@ -223,7 +223,7 @@ namespace StudentTrackingSystem.Controllers
                     return RedirectToAction("Index", "Student");
                 }
 
-                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads/rar");
+                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
                 var uniqueFileName = Guid.NewGuid().ToString() + "_" + model.RarFile.FileName;
                 var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
@@ -255,7 +255,6 @@ namespace StudentTrackingSystem.Controllers
                 return NotFound();
             }
 
-            // Dosya yolunu sil (varsa)
             if (!string.IsNullOrEmpty(student.FileName))
             {
                 var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads/rar", student.FileName);
@@ -265,13 +264,12 @@ namespace StudentTrackingSystem.Controllers
                 }
             }
 
-            // Veritabanında dosya yolu bilgisini temizle
-            student.FileName = null; // veya boş bir dize ("")
+            student.FileName = null;
 
             _studentRepository.Update(student);
             _studentRepository.Save();
 
-            TempData["success"] = "The homework has been deleted successfully!";
+            TempData["success"] = "The previously uploaded homework has been successfully removed."!;
             return RedirectToAction("Index", "Student");
         }
 

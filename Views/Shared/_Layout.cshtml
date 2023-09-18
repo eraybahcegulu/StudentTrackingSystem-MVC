@@ -25,17 +25,19 @@
                         </li>
                         @if (User.IsInRole(UserRoles.Role_Teacher))
                         {
-                        }
                             <li style="margin-left:10px;" class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Index">Student List</a>
                             </li>
+                        }
+
                         
                         @if (User.IsInRole(UserRoles.Role_Student))
                         {
-                        }
                             <li style="margin-left:10px;" class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="StudentHome" asp-action="Index">My Information</a>
                             </li>
+                        }
+
                         
 
                     </ul>

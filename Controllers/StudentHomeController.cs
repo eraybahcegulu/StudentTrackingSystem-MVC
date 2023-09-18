@@ -7,7 +7,7 @@ using System.Security.Claims;
 namespace StudentTrackingSystem.Controllers
 {
 
-    //[Authorize(Roles = UserRoles.Role_Student)]
+    [Authorize(Roles = UserRoles.Role_Student)]
     public class StudentHomeController : Controller
     {
         private readonly IStudentRepository _studentRepository;

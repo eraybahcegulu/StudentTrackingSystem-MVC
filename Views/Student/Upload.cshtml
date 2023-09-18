@@ -18,16 +18,16 @@
                             <span asp-validation-for="RarFile" class="text-danger"></span>
                         </div>
                         <div style="margin-top:10px;" class="form-group">
-                            <input type="submit" value="Upload" class="btn btn-primary" />
-                            <a asp-controller="Student" asp-action="Index" class="btn  btn-primary" style="width:200px">
+                            <input type="submit" value="Upload Homework" class="btn btn-primary" />
+                            <a asp-controller="Student" asp-action="Index" class="btn btn-secondary" style="width:150px">
                                 Back to Students
                             </a>
                         </div>
                     </form>
 
-                    <form asp-controller="Student" asp-action="DeleteHomework" method="post">
+                    <form style="margin-top:10px;" asp-controller="Student" asp-action="DeleteHomework" method="post">
                         <input type="hidden" name="studentId" value="@Model.Student.Id" />
-                        <button type="submit" class="btn btn-primary" style="width:200px">Delete Homework</button>
+                        <button type="submit" class="btn btn-danger" style="width:315px">Delete Uploaded Homework</button>
                     </form>
                 </div>
             </div>
