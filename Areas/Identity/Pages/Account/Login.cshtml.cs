@@ -119,8 +119,6 @@ namespace StudentTrackingSystem.Areas.Identity.Pages.Account
                     }
                     if (result.RequiresTwoFactor)
                     {
-                        // İki faktörlü kimlik doğrulama gerektiren bir durum
-                        // Gerekli adımları burada yönetebilirsiniz
                         return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                     }
                     if (result.IsLockedOut)
@@ -140,8 +138,6 @@ namespace StudentTrackingSystem.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-
-            // Geçerli olmayan giriş durumları için hata mesajlarını burada yönetin
             return Page();
         }
     }
