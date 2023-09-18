@@ -108,7 +108,7 @@ namespace StudentTrackingSystem.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                if (Input.Email.EndsWith("@stu.edu.tr"))
+                if (Input.Email.EndsWith("@stu.edu.tr") || Input.Email.EndsWith("@edu.tr") )
                 {
                     var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
 
